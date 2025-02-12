@@ -300,35 +300,47 @@ defmodule Supabase.Client do
   end
 
   defimpl Inspect, for: Supabase.Client do
-    import Inspect.Algebra
+  import Inspect.Algebra
 
-    def inspect(%Supabase.Client{} = client, opts) do
-      concat([
-        "#Supabase.Client<",
-        nest(
-          concat([
-            line(),
-            "base_url: ",
-            to_doc(client.base_url, opts),
-            ",",
-            line(),
-            "schema: ",
-            to_doc(client.db.schema, opts),
-            ",",
-            line(),
-            "auth: (",
-            "flow_type: ",
-            to_doc(client.auth.flow_type, opts),
-            ", ",
-            "persist_session: ",
-            to_doc(client.auth.persist_session, opts),
-            ")"
-          ]),
-          2
-        ),
-        line(),
-        ">"
-      ])
-    end
+  def inspect(%Supabase.Client{} = client, opts) do
+    concat([
+      "#Supabase.Client<",
+      nest(
+        concat([
+          line(),
+          "base_url: ",
+          to_doc(client.base_url, opts),
+          ",",
+          line(),
+          "api_key: ",
+          to_doc(client.api_key, opts),
+          ",",
+          line(),
+          "access_token: ",
+          to_doc(client.access_token, opts),
+          ",",
+          line(),
+          "schema: ",
+          to_doc(client.db.schema, opts),
+          ",",
+          line(),
+          "headers: ",
+          to_doc(client.global.headers, opts),
+          ",",
+          line(),
+          "auth: (",
+          "flow_type: ",
+          to_doc(client.auth.flow_type, opts),
+          ", ",
+          "persist_session: ",
+          to_doc(client.auth.persist_session, opts),
+          ")"
+        ]),
+        2
+      ),
+      line(),
+      ">"
+    ])
   end
+end
 end
